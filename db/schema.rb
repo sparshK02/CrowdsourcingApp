@@ -10,5 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_22_180958) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_23_181218) do
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "annotatorID"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.index ["annotatorID"], name: "index_users_on_annotatorID", unique: true
+  end
+
 end
