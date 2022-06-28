@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) # Not the final implementation!
     if @user.save
+      log_in @user
       flash[:success] = "Welcome to the Annotation Tool, you have successfully made an account!"
       redirect_to @user
     else

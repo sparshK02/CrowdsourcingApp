@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <!--%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %-->
   </head>
 
   <body>
@@ -17,7 +18,15 @@
          <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "Instructions", instructions_path %></li>
            <li><%= link_to "Home", root_path %></li>
-           <li><%= link_to "Log in", '#' %></li>
+
+           <% if logged_in? %>
+           <li><%= link_to "Profile", current_user %></li>
+            <li><%= link_to "Log out", logout_path, method: :delete %></li>
+            
+        <% else %>
+          <li><%= link_to "Log in", login_path %></li>
+        <% end %>
+           
          </ul>
        </nav>
     </div>
@@ -27,11 +36,11 @@
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
-    
+
     <%= yield %>
   </div>
-
-  <!----> <%= debug(params) if Rails.env.development? %> <!---->
+  <!-- <%= debug(params[:session]) if Rails.env.development? %> -->
+  <!-- <%= debug(params) if Rails.env.development? %> -->
   
   <footer class="footer">
   <nav>
