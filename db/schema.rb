@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_23_181218) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_01_180015) do
+  create_table "annotations", force: :cascade do |t|
+    t.text "product"
+    t.text "question"
+    t.text "evidences"
+    t.text "paraphrase"
+    t.text "answer"
+    t.text "highly_relevant"
+    t.text "partially_relevant"
+    t.boolean "assigned?", default: false
+    t.boolean "finished?", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "annotatorID"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "annotatorID"
@@ -20,4 +35,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_181218) do
     t.index ["annotatorID"], name: "index_users_on_annotatorID", unique: true
   end
 
+  add_foreign_key "annotations", "users", column: "annotatorID", primary_key: "annotatorID"
 end
