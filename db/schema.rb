@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_01_180015) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_04_235314) do
   create_table "annotations", force: :cascade do |t|
     t.text "product"
     t.text "question"
-    t.text "evidences"
     t.text "paraphrase"
     t.text "answer"
     t.text "highly_relevant"
@@ -24,6 +23,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_01_180015) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "annotatorID"
+    t.text "reviews"
+    t.text "productAttributes"
+    t.text "QnAs"
   end
 
   create_table "users", force: :cascade do |t|
