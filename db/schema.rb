@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_04_235314) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_180725) do
   create_table "annotations", force: :cascade do |t|
     t.text "product"
     t.text "question"
@@ -18,14 +18,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_235314) do
     t.text "answer"
     t.text "highly_relevant"
     t.text "partially_relevant"
-    t.boolean "assigned?", default: false
-    t.boolean "finished?", default: false
+    t.boolean "assigned", default: false
+    t.boolean "finished", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "annotatorID"
     t.text "reviews"
     t.text "productAttributes"
     t.text "QnAs"
+    t.string "itemID"
+    t.text "externalSources"
+    t.boolean "answerable"
+    t.text "productDesc"
+    t.text "irrelevant"
+    t.text "notSure"
   end
 
   create_table "users", force: :cascade do |t|

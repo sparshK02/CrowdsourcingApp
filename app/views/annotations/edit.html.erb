@@ -1,0 +1,165 @@
+<% provide(:title, "Complete Task") %>
+
+<div class = "full-page">
+
+<div class="sticky-top">
+<h1>Instructions for Task: </h1>
+<h2>Rewrite/Paraphrase the Question in your own words based on your understanding.</h2>
+<h2>Determine the level of relevancy for each piece of evidence in regard to the question.</h2>
+<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
+</div>
+
+<% evidenceHash = Hash.new%>
+<% @annotation.reviews.each do |review|%>
+  <% evidenceHash[review] = ""%>
+<% end %>
+
+<div class="page-content">
+
+<%= form_with(model: @annotation)do |f| %>
+
+<h3> <b>Product:</b> <%= @annotation.product%><h3>
+<h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
+<h3> <b>Question:</b> <%= @annotation.question%><h3>
+
+<br>
+<%= f.label "Paraphrase the question above here: "%>
+<%= f.text_field :paraphrase%>
+
+<br>
+<p>
+  <strong>Reviews:</strong>
+
+  <ul>
+  <% @annotation.reviews.each do |review|%>
+  <li>
+    <% reviewStr = review.keys[0]%>
+    <% title = review.values[0].values[0]%>
+    <% content = review.values[0].values[1]%>
+    <div class="tool-tip"> <%= reviewStr %>
+      <span class = "tool-tip-text"> <b>Title:</b> <%= title %> <br><br> <b>Content:</b> <%=content%> </span>
+    </div>
+    
+        <div class="checkbox-list">
+            <%= f.check_box :highly_relevant, {multiple: true}, review%>
+            <%= f.label :highly_relevant, "Highly Relevant"%> <br>
+            <%= f.check_box :partially_relevant, {multiple: true}, review%>
+            <%= f.label :partially_relevant, "Partially Relevant"%> <br>
+            <%= f.check_box :irrelevant, {multiple: true}, review%>
+            <%= f.label :irrelevant, "Irrelevant"%> <br>
+            <%= f.check_box :notSure, {multiple: true}, review%>
+            <%= f.label :notSure, "Not Sure"%> <br>
+       </div>
+    </li>
+  <% end %>
+  </ul>
+</p>
+
+<br>
+
+<p>
+  <strong>Product Attributes:</strong>
+  <% if @annotation.productAttributes == "[]"%>
+    <p> No Product Attributes for this product <p>
+  <% else %>
+    <% @annotation.productAttributes.each do |productAttr|%>
+        <ul>
+        <li> 
+        
+            <b>Key:</b> <%= productAttr.keys[0] %> 
+            <br>
+            <b>Value:</b> <%= productAttr.values[0] %>
+            
+            <div class = "checkbox-list">
+              <%= f.check_box :highly_relevant, {multiple: true}, productAttr%>
+              <%= f.label :highly_relevant, "Highly Relevant"%> <br>
+              <%= f.check_box :partially_relevant, {multiple: true}, productAttr%>
+              <%= f.label :partially_relevant, "Partially Relevant"%> <br>
+              <%= f.check_box :irrelevant, {multiple: true}, productAttr%>
+              <%= f.label :irrelevant, "Irrelevant"%> <br>
+              <%= f.check_box :notSure, {multiple: true}, productAttr%>
+              <%= f.label :notSure, "Not Sure"%> <br>
+            </div>
+        </li>
+        </ul>
+    <% end %>
+  <% end %>
+</p>
+
+<br>
+
+<!--
+<p>
+  <strong>Product Description:</strong>
+  <% @annotation.productDesc.each do |productD|%>
+  <ul>
+  <li><%= productD %></li>
+  </ul>
+  <% end %>
+</p>
+
+-->
+<br>
+
+<p>
+  <strong>QnA's:</strong>
+  <% @annotation.QnAs.each do |qA|%>
+  <ul>
+    <li>
+      <b>Question:</b> <%= qA[0] %>
+      <br>
+        <b>Answer(s):</b> <br>
+      <ul>
+      <% qA[1].each do |answer|%>
+        <li> <%= answer %> </li>
+      <% end %>
+      </ul>
+
+          <div class = "checkbox-list">
+              <%= f.check_box :highly_relevant, {multiple: true}, qA%>
+              <%= f.label :highly_relevant, "Highly Relevant"%> <br>
+              <%= f.check_box :partially_relevant, {multiple: true}, qA%>
+              <%= f.label :partially_relevant, "Partially Relevant"%> <br>
+              <%= f.check_box :irrelevant, {multiple: true}, qA%>
+              <%= f.label :irrelevant, "Irrelevant"%> <br>
+              <%= f.check_box :notSure, {multiple: true}, qA%>
+              <%= f.label :notSure, "Not Sure"%> <br>
+          </div>  
+    </li>
+  </ul>
+  <% end %>
+</p>
+
+<br>
+<%= f.label "Is this question answerable based on the evidence provided?"%>
+<div class = "answerable-list">
+    <%= f.label :answerable, "Yes, it is answerable", value: "true"%>
+    <%= f.radio_button :answerable, "true"%><br>
+    <%= f.label :answerable, "No, it is unanswerable", value: "false"%>
+    <%= f.radio_button :answerable, "false" %>
+</div>
+
+<br>
+<%= f.label "If you said this question is answerable, please compose an answer here (if you said the question is unanswerable, leave this section blank): "%>
+<div class = "textarea"> <%= f.text_field :answer%> </div>
+
+<%= f.label "Enter any external sources you found here: "%>
+<%= f.text_field :externalSources, placeholder: "Ex: \"Reddit: https://www.reddit.com/\""%>
+
+
+<br>
+
+<%= f.hidden_field :finished, value: true%> 
+<%= f.hidden_field :annotatorID, value: current_user.annotatorID%>
+
+
+<div class="actions">
+    <%= f.submit "Submit", class: 'btn btn-primary'%>
+  </div>
+
+<% end %>
+
+</div>
+</div>
+
+

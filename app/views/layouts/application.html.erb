@@ -11,6 +11,7 @@
   </head>
 
   <body>
+  <div class= "top-bar">
    <header class="navbar navbar-fixed-top navbar-inverse">
      <div class="container">
        <%= link_to "Annotation Tool", root_path, id: "logo" %>
@@ -31,6 +32,7 @@
        </nav>
     </div>
   </header>
+  </div>
   
   <div class="container">
     <% flash.each do |message_type, message| %>
@@ -40,7 +42,7 @@
     <%= yield %>
   </div>
   <!-- <%= debug(params[:session]) if Rails.env.development? %> -->
-  <!-- <%= debug(params) if Rails.env.development? %> -->
+  <!----> <%= debug(params) if Rails.env.development? %> <!---->
   
   <footer class="footer">
   <nav>

@@ -5,6 +5,7 @@
 
 $gray-medium-light: #eaeaea;
 
+
 /* universal */
 
 body {
@@ -159,6 +160,120 @@ input {
 
 
 /* miscellaneous */
+
+.top-bar {
+  padding: bottom;
+}
+
+.full-page {
+  padding: top;
+}
+
+.sticky-top {
+  top: 10%;
+  bottom: 10;
+  width: 15%;
+  position:fixed;
+  float: left;
+  overflow-x:scroll;
+  overflow-y:scroll;
+  background-color: $gray-medium-light;
+  border-radius: 15px;
+}
+
+.page-content {
+  float: right;
+  top: 10%;
+  width: 70%;
+  /*margin-left: 30%; */
+
+}
+
+.checkbox-list {
+  font-size: 17px;
+  background-color: $gray-medium-light;
+  line-height: 17px;
+  border-radius: 15px;
+  width: 200px;
+  height: 110px;
+  margin: 15px;
+}
+
+.checkbox-list label {
+  position: relative; 
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.checkbox-list input[type=checkbox] {
+  margin-top: 7px;
+  margin-left: 10px;
+  width: 15px;
+  height: 15px;
+  float: left;
+  top: -1px;
+}
+
+.answerable-list {
+  font-size: 17px;
+  background-color: $gray-medium-light;
+  line-height: 17px;
+  border-radius: 15px;
+  width: 240px;
+  height: 60px;
+  margin: 15px;
+}
+
+.answerable-list label {
+  position: relative; 
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+
+.answerable-list input[type=radio] {
+  margin-top: 7px;
+  margin-left: 10px;
+  width: 15px;
+  height: 15px;
+  float: left;
+  top: -1px;
+}
+
+/* Tooltip container */
+.tool-tip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tool-tip .tool-tip-text {
+  visibility: hidden;
+  opacity: 100;
+  background-color: #ebf2f8;
+  outline-style: solid;
+  outline-color: #387cb4;
+  outline-width: 2px;
+  color: #163248;
+  text-align: left;
+  text-indent: 2%;
+  padding: 15px;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 30%;
+  
+  /*margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+/* Show the tooltip text when you mouse over the tooltip container  */
+.tool-tip:hover .tool-tip-text {
+  visibility: visible;
+}
+
 
 .debug_dump {
   clear: both;
