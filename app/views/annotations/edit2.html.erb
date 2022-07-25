@@ -3,11 +3,10 @@
 <div class = "full-page">
 
 <div class="sticky-top">
-<h1>Instructions for Task: </h1>
-<h2>Rewrite/Paraphrase the Question in your own words based on your understanding.</h2>
-<h2>Determine the level of relevancy for each piece of evidence in regard to the question.</h2>
-<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
-
+<h1>Instructions: </h1>
+<p><b>Determine the level of relevancy for each product attribute</b> with regard to the question.</p>
+<p> The Key and value represent the identifier for the product attribute and its value. </p>
+<p> The Product, Item ID, and original Question are given to you below: </p>
 <h3> <b>Product:</b> <%= @annotation.product%><h3>
 <h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
 <h3> <b>Question:</b> <%= @annotation.question%><h3>
@@ -17,11 +16,12 @@
 
 <%= form_with(model: @annotation)do |f| %>
 
+<br>
 
 <p>
   <h3><b>Product Attributes:</b></h3>
-  <% if @annotation.productAttributes == "[]"%>
-    <p> No Product Attributes for this product <p>
+  <% if (@annotation.productAttributes == "[]" or @annotation.productAttributes == nil or @annotation.productAttributes.size == 0) %>
+    <p> No Product Attributes for this product, move on to the next section. <p>
   <% else %>
     <% @annotation.productAttributes.each do |productAttr|%>
         <ul>

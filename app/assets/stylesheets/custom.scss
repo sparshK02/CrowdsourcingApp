@@ -246,8 +246,13 @@ input {
   display: inline-block;
 }
 
+.tool-tip:hover {
+  font-style: italic;
+}
+
 /* Tooltip text */
 .tool-tip .tool-tip-text {
+  font-style: normal;
   visibility: hidden;
   opacity: 100;
   background-color: #ebf2f8;

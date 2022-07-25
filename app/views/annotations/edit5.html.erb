@@ -3,11 +3,12 @@
 <div class = "full-page">
 
 <div class="sticky-top">
-<h1>Instructions for Task: </h1>
-<h2>Rewrite/Paraphrase the Question in your own words based on your understanding.</h2>
-<h2>Determine the level of relevancy for each piece of evidence in regard to the question.</h2>
-<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
-
+<h1>Instructions: </h1>
+<p> Attempt to find some external sources that have the answer to this question, if there are 
+not any external sources, leave this section blank. </p>
+<p>If you are able to find external sources with an answer to the original question, 
+please enter them in the box with a format like: "Source: URL", in the case of reddit: "Reddit: https://www.reddit.com/". </p>
+<p> The Product, Item ID, and original Question are given to you below: </p>
 <h3> <b>Product:</b> <%= @annotation.product%><h3>
 <h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
 <h3> <b>Question:</b> <%= @annotation.question%><h3>
@@ -16,8 +17,10 @@
 <div class="page-content">
 
 <%= form_with(model: @annotation)do |f| %>
+<br>
+<br>
 
-<%= f.label "Enter any external sources you found here: "%>
+<h3><%= f.label "Enter any external sources you found here: "%></h3>
 <%= f.text_field :externalSources, placeholder: "Ex: \"Reddit: https://www.reddit.com/\""%>
 
 

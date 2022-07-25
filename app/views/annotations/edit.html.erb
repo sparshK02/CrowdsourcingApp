@@ -3,10 +3,11 @@
 <div class = "full-page">
 
 <div class="sticky-top">
-<h1>Instructions for Task: </h1>
-<h2>Rewrite/Paraphrase the Question in your own words based on your understanding.</h2>
-<h2>Determine the level of relevancy for each piece of evidence in regard to the question.</h2>
-<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
+<h1>Instructions:</h1>
+<p>For the first part, <b>Rewrite/Paraphrase the Question in your own words</b> based on your understanding.</p>
+<p>Then, <b>determine the level of relevancy for each user review snippet</b> with regard to the question. Hover over the review to view the entire review.</p>
+<p> Here is the original question for your reference while scrolling: </p>
+<h3> <b>Question:</b> <br> <%= @annotation.question%><h3>
 </div>
 
 <div class="page-content">
@@ -23,8 +24,11 @@
 
 <br>
 <p>
-  <strong>Reviews:</strong>
-
+  <strong>Reviews:</strong> 
+ (Hover over review snippet to view full review.)
+ <% if (@annotation.reviews == "[]" or @annotation.reviews == nil or @annotation.reviews.size == 0) %>
+    <p> No Reviews for this product, move on to the next section. <p>
+<% else %>
   <ul>
   <% @annotation.reviews.each do |review|%>
   <li>
@@ -48,6 +52,7 @@
     </li>
   <% end %>
   </ul>
+  <% end %>
 </p>
 
 <br>

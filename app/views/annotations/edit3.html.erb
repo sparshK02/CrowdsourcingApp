@@ -3,10 +3,10 @@
 <div class = "full-page">
 
 <div class="sticky-top">
-<h1>Instructions for Task: </h1>
-<h2>Rewrite/Paraphrase the Question in your own words based on your understanding.</h2>
-<h2>Determine the level of relevancy for each piece of evidence in regard to the question.</h2>
-<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
+<h1>Instructions: </h1>
+<p><b>Determine the level of relevancy for each Question and its Answers</b> with regard to the question.</p>
+<p> The question is shown along with all the answers for that question. </p>
+<p> The Product, Item ID, and original Question are given to you below: </p>
 
 <h3> <b>Product:</b> <%= @annotation.product%><h3>
 <h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
@@ -21,6 +21,9 @@
 
 <p>
   <h3><b>QnA's:</b></h3>
+  <% if (@annotation.QnAs == "[]" or @annotation.QnAs == nil or @annotation.QnAs.size == 0) %>
+    <p> No QnAs for this product, move on to the next section. <p>
+  <% else %>
   <% @annotation.QnAs.each do |qA|%>
   <ul>
     <li>
@@ -45,6 +48,7 @@
           </div>  
     </li>
   </ul>
+  <% end %>
   <% end %>
 </p>
 
