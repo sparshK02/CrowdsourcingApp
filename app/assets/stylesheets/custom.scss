@@ -170,12 +170,12 @@ input {
 }
 
 .sticky-top {
-  top: 10%;
-  bottom: 10;
+  top: 15%;
+  bottom: 10%;
   width: 15%;
   position:fixed;
+  padding: 15px;
   float: left;
-  overflow-x:scroll;
   overflow-y:scroll;
   background-color: $gray-medium-light;
   border-radius: 15px;
@@ -273,6 +273,56 @@ input {
   visibility: visible;
 }
 
+.actions {
+  padding: 15px;
+  font-size: 16px;
+}
+
+.go-back {
+  background-color: #282a2d;
+  color: white;
+  border-radius: 5px;
+  padding-left: 17%;
+  padding-top: 10px;
+  padding-right: 17%;
+  padding-bottom: 10px;
+  margin-right: 5px;
+}
+.next-section {
+  background-color: #387cb4; 
+  outline-style: solid;
+  border-color: black;
+  color: white;
+  border-radius: 5px;
+  padding-left: 15%;
+  padding-top: 7px;
+  padding-right: 15%;
+  padding-bottom: 5.5px;
+  width: 50%;
+}
+
+.next-section-4 {
+  background-color: #387cb4; 
+  outline-style: solid;
+  border-color: black;
+  color: white;
+  border-radius: 5px;
+  padding-left: 15%;
+  padding-top: 10px;
+  padding-right: 15%;
+  padding-bottom: 9px;
+  width: 50%;
+}
+
+.go-back:hover {
+  background-color: #424b4f;
+  text-decoration: none;
+  color: white;
+}
+
+.next-section:hover {
+  background-color: #3270a2;
+}
 
 .debug_dump {
   clear: both;
