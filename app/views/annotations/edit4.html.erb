@@ -1,0 +1,168 @@
+<% provide(:title, "Complete Task") %>
+
+<div class = "full-page">
+
+<div class="sticky-top">
+<h1>Instructions for Task: </h1>
+<h2>Rewrite/Paraphrase the Question in your own words based on your understanding.</h2>
+<h2>Determine the level of relevancy for each piece of evidence in regard to the question.</h2>
+<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
+<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
+<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
+<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
+
+<h3> <b>Product:</b> <%= @annotation.product%><h3>
+<h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
+<h3> <b>Question:</b> <%= @annotation.question%><h3>
+</div>
+
+<div class="page-content">
+
+<%= form_with(model: @annotation)do |f| %>
+
+<br>
+
+<p>
+  <h1>Highly Relevant Evidence:</h1>
+  <h3> Reviews: </h3>
+  <ul>
+  <% evidenceExist = false %>
+  <% @annotation.highly_relevant_reviews.each do |evidence|%>
+    <% if evidence != '0'%>
+        <% e = JSON.parse(evidence)%>
+        <% evidenceExist = true%>
+        <li> <b>Review Snippet:</b> <%= e.keys[0] %> <br> <b>Title:</b> <%= e.values[0].keys[0]%> <br> <b>Content:</b> <%= e.values[0].values[0] %></li> <br>
+    <% end %>
+  <% end %>
+  <% unless evidenceExist %>
+    No Reviews Marked as Highly Relevant
+  <% end %>
+  </ul>
+
+  <h3> Product Attributes: </h3>
+  <ul>
+  <% evidenceExist = false %>
+  <% @annotation.highly_relevant_product_attributes.each do |evidence|%>
+    <% if evidence != '0'%>
+        <% e = JSON.parse(evidence)%>
+        <% evidenceExist = true%>
+        <li> <b> Key: </b> <%= e.keys[0] %> <br> <b> Value: </b> <%= e.values[0] %></li> <br>
+    <% end %>
+  <% end %>
+  <% unless evidenceExist %>
+    No Product Attributes Marked as Highly Relevant
+  <% end %>
+  </ul>
+
+  <h3> QnAs: </h3>
+  <ul>
+  <% evidenceExist = false %>
+  <% @annotation.highly_relevant_qnas.each do |evidence|%>
+    <% if evidence != '0'%>
+      <% qA = JSON.parse(evidence)%>
+      <% evidenceExist = true%>
+      <li>
+      <b>Question:</b> <%= qA[0] %>
+      <br>
+        <b>Answer(s):</b> <br>
+      <ul>
+      <% qA[1].each do |answer|%>
+        <li> <%= answer %> </li>
+      <% end %>
+      </ul>
+    </li>
+    <% end %>
+  <% end %>
+  <% unless evidenceExist %>
+    No QnAs Marked as Highly Relevant
+  <% end %>
+  </ul>
+</p>
+<br>
+
+<p>
+  <h1>Partially Relevant Evidence:</h1>
+  <h3> Reviews: </h3>
+  <ul>
+  <% evidenceExist = false %>
+  <% @annotation.partially_relevant_reviews.each do |evidence|%>
+    <% if evidence != '0'%>
+        <% e = JSON.parse(evidence)%>
+        <% evidenceExist = true%>
+        <li> <b>Review Snippet:</b> <%= e.keys[0] %> <br> <b>Title:</b> <%= e.values[0].keys[0]%> <br> <b>Content:</b> <%= e.values[0].values[0] %></li> <br>
+    <% end %>
+  <% end %>
+  <% unless evidenceExist %>
+    No Reviews Marked as Partially Relevant
+  <% end %>
+  </ul>
+
+  <h3> Product Attributes: </h3>
+  <ul>
+  <% evidenceExist = false %>
+  <% @annotation.partially_relevant_product_attributes.each do |evidence|%>
+    <% if evidence != '0'%>
+        <% e = JSON.parse(evidence)%>
+        <% evidenceExist = true%>
+        <li> <b> Key: </b> <%= e.keys[0] %> <br> <b> Value: </b> <%= e.values[0] %></li> <br>
+    <% end %>
+  <% end %>
+  <% unless evidenceExist %>
+    No Product Attributes Marked as Partially Relevant
+  <% end %>
+  </ul>
+
+  <h3> QnAs: </h3>
+  <ul>
+  <% evidenceExist = false %>
+  <% @annotation.partially_relevant_qnas.each do |evidence|%>
+    <% if evidence != '0'%>
+      <% qA = JSON.parse(evidence)%>
+      <% evidenceExist = true%>
+      <li>
+      <b>Question:</b> <%= qA[0] %>
+      <br>
+        <b>Answer(s):</b> <br>
+      <ul>
+      <% qA[1].each do |answer|%>
+        <li> <%= answer %> </li>
+      <% end %>
+      </ul>
+    </li>
+    <% end %>
+  <% end %>
+  <% unless evidenceExist %>
+    No QnAs Marked as Partially Relevant
+  <% end %>
+  </ul>
+</p>
+
+<br>
+<h3><%= f.label "Is this question answerable based on the evidence marked as relevant?"%> <h3>
+<div class = "answerable-list">
+    <%= f.label :answerable, "Yes, it is answerable", value: "true"%>
+    <%= f.radio_button :answerable, "true"%><br>
+    <%= f.label :answerable, "No, it is unanswerable", value: "false"%>
+    <%= f.radio_button :answerable, "false" %>
+</div>
+
+<br>
+<%= f.label "If you said this question is answerable, please compose an answer here (if you said the question is unanswerable, leave this section blank): "%>
+<div class = "textarea"> <%= f.text_field :answer%> </div>
+
+
+<%= f.hidden_field :formStage, value: 4%>
+<%= f.hidden_field :annotatorID, value: current_user.annotatorID%>
+
+
+<div class="actions">
+    <%= link_to "Go Back", complete_task3_path(@annotation), class: 'go-back'%>
+    <%= f.submit "Next Section", class: 'next-section-4'%>
+  </div>
+
+<% end %>
+
+</div>
+</div>
+
+

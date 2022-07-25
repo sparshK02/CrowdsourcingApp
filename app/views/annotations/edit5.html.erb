@@ -1,0 +1,41 @@
+<% provide(:title, "Complete Task") %>
+
+<div class = "full-page">
+
+<div class="sticky-top">
+<h1>Instructions for Task: </h1>
+<h2>Rewrite/Paraphrase the Question in your own words based on your understanding.</h2>
+<h2>Determine the level of relevancy for each piece of evidence in regard to the question.</h2>
+<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
+
+<h3> <b>Product:</b> <%= @annotation.product%><h3>
+<h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
+<h3> <b>Question:</b> <%= @annotation.question%><h3>
+</div>
+
+<div class="page-content">
+
+<%= form_with(model: @annotation)do |f| %>
+
+<%= f.label "Enter any external sources you found here: "%>
+<%= f.text_field :externalSources, placeholder: "Ex: \"Reddit: https://www.reddit.com/\""%>
+
+
+<br>
+
+<%= f.hidden_field :formStage, value: 5%>
+<%= f.hidden_field :finished, value: true%> 
+<%= f.hidden_field :annotatorID, value: current_user.annotatorID%>
+
+
+<div class="actions">
+    <%= link_to "Go Back", complete_task4_path(@annotation), class: 'go-back'%>
+    <%= f.submit "Submit", class: 'next-section'%>
+  </div>
+
+<% end %>
+
+</div>
+</div>
+
+

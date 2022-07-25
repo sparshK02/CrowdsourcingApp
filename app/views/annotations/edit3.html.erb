@@ -1,0 +1,66 @@
+<% provide(:title, "Complete Task") %>
+
+<div class = "full-page">
+
+<div class="sticky-top">
+<h1>Instructions for Task: </h1>
+<h2>Rewrite/Paraphrase the Question in your own words based on your understanding.</h2>
+<h2>Determine the level of relevancy for each piece of evidence in regard to the question.</h2>
+<h2>Come up with a coherent answer, based on the relevant evidence.</h2>
+
+<h3> <b>Product:</b> <%= @annotation.product%><h3>
+<h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
+<h3> <b>Question:</b> <%= @annotation.question%><h3>
+</div>
+
+<div class="page-content">
+
+<%= form_with(model: @annotation)do |f| %>
+
+<br>
+
+<p>
+  <h3><b>QnA's:</b></h3>
+  <% @annotation.QnAs.each do |qA|%>
+  <ul>
+    <li>
+      <b>Question:</b> <%= qA[0] %>
+      <br>
+        <b>Answer(s):</b> <br>
+      <ul>
+      <% qA[1].each do |answer|%>
+        <li> <%= answer %> </li>
+      <% end %>
+      </ul>
+
+          <div class = "checkbox-list">
+              <%= f.check_box :highly_relevant_qnas, {multiple: true}, qA.to_json%>
+              <%= f.label :highly_relevant_qnas, "Highly Relevant"%> <br>
+              <%= f.check_box :partially_relevant_qnas, {multiple: true}, qA.to_json%>
+              <%= f.label :partially_relevant_qnas, "Partially Relevant"%> <br>
+              <%= f.check_box :irrelevant_qnas, {multiple: true}, qA.to_json%>
+              <%= f.label :irrelevant_qnas, "Irrelevant"%> <br>
+              <%= f.check_box :not_sure_qnas, {multiple: true}, qA.to_json%>
+              <%= f.label :not_sure_qnas, "Not Sure"%> <br>
+          </div>  
+    </li>
+  </ul>
+  <% end %>
+</p>
+
+
+<%= f.hidden_field :formStage, value: 3%>
+<%= f.hidden_field :annotatorID, value: current_user.annotatorID%>
+
+
+<div class="actions">
+    <%= link_to "Go Back", complete_task2_path(@annotation), class: 'go-back'%>
+    <%= f.submit "Next Section", class: 'next-section'%>
+  </div>
+
+<% end %>
+
+</div>
+</div>
+
+
