@@ -9,14 +9,47 @@ class AnnotationsController < ApplicationController
         respond_to do |format|
             if @annotation.update(annotation_params)
                 if @annotation.formStage == 1
+                    @annotation.highly_relevant_reviews.reject! {|evidence| evidence == "0"}
+                    @annotation.partially_relevant_reviews.reject! {|evidence| evidence == "0"}
+                    @annotation.irrelevant_reviews.reject! {|evidence| evidence == "0"}
+                    @annotation.not_sure_reviews.reject! {|evidence| evidence == "0"}
+                    @annotation.save
+                    @annotation.reviews.each do |evidence|
+                        if ((!(@annotation.highly_relevant_reviews.include? evidence)) and (!(@annotation.partially_relevant_reviews.include? evidence)) and (!(@annotation.irrelevant_reviews.include? evidence)) and (!(@annotation.not_sure_reviews.include? evidence)) )
+                            @annotation.irrelevant_reviews.append(evidence)
+                        end
+                    end
+                    @annotation.save
                     flash[:success] = "Paraphrasing and Reviews Annotated."
                     format.html { redirect_to complete_task2_path(@annotation)}
                     format.json { render :show, status: :ok, location: @annotation }
                 elsif @annotation.formStage == 2
+                    @annotation.highly_relevant_product_attributes.reject! {|evidence| evidence == "0"}
+                    @annotation.partially_relevant_product_attributes.reject! {|evidence| evidence == "0"}
+                    @annotation.irrelevant_product_attributes.reject! {|evidence| evidence == "0"}
+                    @annotation.not_sure_product_attributes.reject! {|evidence| evidence == "0"}
+                    @annotation.save
+                    @annotation.productAttributes.each do |evidence|
+                        if ((!(@annotation.highly_relevant_product_attributes.include? evidence)) and (!(@annotation.partially_relevant_product_attributes.include? evidence)) and (!(@annotation.irrelevant_product_attributes.include? evidence)) and (!(@annotation.not_sure_product_attributes.include? evidence)) )
+                            @annotation.irrelevant_product_attributes.append(evidence)
+                        end
+                    end
+                    @annotation.save
                     flash[:success] = "Product Attributes Annotated."
                     format.html { redirect_to complete_task3_path(@annotation)}
                     format.json { render :show, status: :ok, location: @annotation }
                 elsif @annotation.formStage == 3
+                    @annotation.highly_relevant_qnas.reject! {|evidence| evidence == "0"}
+                    @annotation.partially_relevant_qnas.reject! {|evidence| evidence == "0"}
+                    @annotation.irrelevant_qnas.reject! {|evidence| evidence == "0"}
+                    @annotation.not_sure_qnas.reject! {|evidence| evidence == "0"}
+                    @annotation.save
+                    @annotation.QnAs.each do |evidence|
+                        if ((!(@annotation.highly_relevant_qnas.include? evidence)) and (!(@annotation.partially_relevant_qnas.include? evidence)) and (!(@annotation.irrelevant_qnas.include? evidence)) and (!(@annotation.not_sure_qnas.include? evidence)) )
+                            @annotation.irrelevant_qnas.append(evidence)
+                        end
+                    end
+                    @annotation.save
                     flash[:success] = "QnAs Annotated."
                     format.html { redirect_to complete_task4_path(@annotation)}
                     format.json { render :show, status: :ok, location: @annotation }

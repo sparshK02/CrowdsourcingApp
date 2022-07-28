@@ -24,11 +24,9 @@
   <ul>
   <% evidenceExist = false %>
   <% @annotation.highly_relevant_reviews.each do |evidence|%>
-    <% if evidence != '0'%>
         <% e = JSON.parse(evidence)%>
         <% evidenceExist = true%>
         <li> <b>Review Snippet:</b> <%= e.keys[0] %> <br> <b>Title:</b> <%= e.values[0].values[0]%> <br> <b>Content:</b> <%= e.values[0].values[1] %></li> <br>
-    <% end %>
   <% end %>
   <% unless evidenceExist %>
     No Reviews Marked as Highly Relevant
@@ -39,11 +37,9 @@
   <ul>
   <% evidenceExist = false %>
   <% @annotation.highly_relevant_product_attributes.each do |evidence|%>
-    <% if evidence != '0'%>
         <% e = JSON.parse(evidence)%>
         <% evidenceExist = true%>
         <li> <b> Key: </b> <%= e.keys[0] %> <br> <b> Value: </b> <%= e.values[0] %></li> <br>
-    <% end %>
   <% end %>
   <% unless evidenceExist %>
     No Product Attributes Marked as Highly Relevant
@@ -54,7 +50,6 @@
   <ul>
   <% evidenceExist = false %>
   <% @annotation.highly_relevant_qnas.each do |evidence|%>
-    <% if evidence != '0'%>
       <% qA = JSON.parse(evidence)%>
       <% evidenceExist = true%>
       <li>
@@ -67,7 +62,6 @@
       <% end %>
       </ul>
     </li>
-    <% end %>
   <% end %>
   <% unless evidenceExist %>
     No QnAs Marked as Highly Relevant
@@ -82,11 +76,9 @@
   <ul>
   <% evidenceExist = false %>
   <% @annotation.partially_relevant_reviews.each do |evidence|%>
-    <% if evidence != '0'%>
         <% e = JSON.parse(evidence)%>
         <% evidenceExist = true%>
         <li> <b>Review Snippet:</b> <%= e.keys[0] %> <br> <b>Title:</b> <%= e.values[0].values[0]%> <br> <b>Content:</b> <%= e.values[0].values[1] %></li> <br>
-    <% end %>
   <% end %>
   <% unless evidenceExist %>
     No Reviews Marked as Partially Relevant
@@ -97,11 +89,9 @@
   <ul>
   <% evidenceExist = false %>
   <% @annotation.partially_relevant_product_attributes.each do |evidence|%>
-    <% if evidence != '0'%>
         <% e = JSON.parse(evidence)%>
         <% evidenceExist = true%>
         <li> <b> Key: </b> <%= e.keys[0] %> <br> <b> Value: </b> <%= e.values[0] %></li> <br>
-    <% end %>
   <% end %>
   <% unless evidenceExist %>
     No Product Attributes Marked as Partially Relevant
@@ -112,7 +102,6 @@
   <ul>
   <% evidenceExist = false %>
   <% @annotation.partially_relevant_qnas.each do |evidence|%>
-    <% if evidence != '0'%>
       <% qA = JSON.parse(evidence)%>
       <% evidenceExist = true%>
       <li>
@@ -125,7 +114,6 @@
       <% end %>
       </ul>
     </li>
-    <% end %>
   <% end %>
   <% unless evidenceExist %>
     No QnAs Marked as Partially Relevant

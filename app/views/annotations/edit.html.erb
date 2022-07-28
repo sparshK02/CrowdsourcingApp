@@ -12,20 +12,28 @@
 
 <div class="page-content">
 
+
 <%= form_with(model: @annotation)do |f| %>
 
+<div class = "info-header">
 <h3> <b>Product:</b> <%= @annotation.product%><h3>
 <h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
 <h3> <b>Question:</b> <%= @annotation.question%><h3>
+</div>
 
 <br>
+<br>
+<h3>
 <%= f.label "Paraphrase the question above here: "%>
 <%= f.text_field :paraphrase%>
-
+</h3>
 <br>
-<p>
-  <strong>Reviews:</strong> 
- (Hover over review snippet to view full review.)
+
+<div class= "header">
+  <h3><b>Reviews:</b> (Hover over review snippet to view full review.)</h3> 
+</div>
+
+ <div class = "evidence-list">
  <% if (@annotation.reviews == "[]" or @annotation.reviews == nil or @annotation.reviews.size == 0) %>
     <p> No Reviews for this product, move on to the next section. <p>
 <% else %>
@@ -50,10 +58,11 @@
             <%= f.label :not_sure_reviews, "Not Sure"%> <br>
        </div>
     </li>
+    <br>
   <% end %>
   </ul>
   <% end %>
-</p>
+</div>
 
 <br>
 
