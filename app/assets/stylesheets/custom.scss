@@ -224,6 +224,45 @@ input {
   background-color: #cfe7fc;
 }
 
+.qa-list {
+  font-size: 23px;
+}
+
+.qa-list li {
+  background-color: #ebf2f8;
+  width: 90%;
+  border-radius: 15px;
+  padding: 2%;
+  list-style: none;
+  list-style-position: none;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 3%;
+  transition-duration: 0.2s;
+}
+
+.qa-list li:hover {
+  background-color: #cfe7fc;
+}
+
+.qa-list li li {
+  font-size: 18px;
+  list-style: square;
+  margin: 0;
+  padding: 3px;
+}
+
+.qa-list li li:hover {
+  background-color: #ebf2f8;
+}
+
+.qa-list .checkbox-list {
+  margin: auto;
+  padding-top: 4px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
 .checkbox-list {
   font-size: 17px;
   background-color: white;
@@ -250,6 +289,27 @@ input {
   height: 15px;
   float: left;
   top: -1px;
+}
+
+.evidence-summary {
+  background-color: #ebf2f8;
+  padding: 3%;
+  border-radius: 3%;
+}
+
+.evidence-summary h1 {
+  text-align: left;
+}
+
+.evidence-summary .evidence-section {
+  background-color: #d8ecfe;
+  padding: 2%;
+  margin-top: 2%;
+  border-radius: 10px;
+}
+
+.evidence-summary h3 {
+  font-weight: bold;
 }
 
 .answerable-list {

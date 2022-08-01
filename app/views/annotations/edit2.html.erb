@@ -16,13 +16,15 @@
 
 <%= form_with(model: @annotation)do |f| %>
 
-<br>
 
-<p>
+<div class= "header">
   <h3><b>Product Attributes:</b></h3>
+</div>
+<br>
   <% if (@annotation.productAttributes == "[]" or @annotation.productAttributes == nil or @annotation.productAttributes.size == 0) %>
     <p> No Product Attributes for this product, move on to the next section. <p>
   <% else %>
+  <div class = "evidence-list">
     <% @annotation.productAttributes.each do |productAttr|%>
         <ul>
         <li> 
@@ -44,8 +46,8 @@
         </li>
         </ul>
     <% end %>
+    </div>
   <% end %>
-</p>
 
 <br>
 

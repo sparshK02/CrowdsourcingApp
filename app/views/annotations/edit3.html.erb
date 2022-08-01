@@ -15,13 +15,15 @@
 
 <%= form_with(model: @annotation)do |f| %>
 
-<br>
 
-<p>
+  <div class = "header">
   <h3><b>Product Descriptions:</b></h3>
+  </div>
+  <br>
   <% if (@annotation.productDesc == "[]" or @annotation.productDesc == nil or @annotation.productDesc.size == 0) %>
     <p> No Product Descriptions for this product, move on to the next section. <p>
   <% else %>
+  <div class = "evidence-list">
     <% @annotation.productDesc.each do |desc|%>
         <ul>
         <li> 
@@ -42,8 +44,8 @@
         </li>
         </ul>
     <% end %>
+    </div>
   <% end %>
-</p>
 
 <br>
 

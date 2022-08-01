@@ -17,13 +17,15 @@
 
 <%= form_with(model: @annotation)do |f| %>
 
-<br>
 
-<p>
+<div class = "header">
   <h3><b>QnA's:</b></h3>
+  </div>
+  <br>
   <% if (@annotation.QnAs == "[]" or @annotation.QnAs == nil or @annotation.QnAs.size == 0) %>
     <p> No QnAs for this product, move on to the next section. <p>
   <% else %>
+  <div class = "qa-list">
   <% @annotation.QnAs.each do |qA|%>
   <ul>
     <li>
@@ -47,11 +49,10 @@
               <%= f.label :not_sure_qnas, "Not Sure"%> <br>
           </div>  
     </li>
-    <br>
   </ul>
   <% end %>
+  </div>
   <% end %>
-</p>
 
 
 <%= f.hidden_field :formStage, value: 4%>

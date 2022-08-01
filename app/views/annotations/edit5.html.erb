@@ -18,8 +18,9 @@
 
 <br>
 
-<p>
+<div class = "evidence-summary">
   <h1>Highly Relevant Evidence:</h1>
+  <div class = "evidence-section">
   <h3> Reviews: </h3>
   <ul>
   <% evidenceExist = false %>
@@ -32,7 +33,9 @@
     No Reviews Marked as Highly Relevant
   <% end %>
   </ul>
+  </div>
 
+  <div class = "evidence-section">
   <h3> Product Attributes: </h3>
   <ul>
   <% evidenceExist = false %>
@@ -45,7 +48,9 @@
     No Product Attributes Marked as Highly Relevant
   <% end %>
   </ul>
+  </div>
 
+<div class = "evidence-section">
   <h3> Product Descriptions: </h3>
   <ul>
   <% evidenceExist = false %>
@@ -58,7 +63,9 @@
     No Product Descriptions Marked as Highly Relevant
   <% end %>
   </ul>
+  </div>
 
+<div class = "evidence-section">
   <h3> QnAs: </h3>
   <ul>
   <% evidenceExist = false %>
@@ -80,12 +87,15 @@
     No QnAs Marked as Highly Relevant
   <% end %>
   </ul>
-</p>
+  </div>
+</div>
 <br>
 <br>
 
-<p>
+<div class = "evidence-summary">
   <h1>Partially Relevant Evidence:</h1>
+
+  <div class = "evidence-section">
   <h3> Reviews: </h3>
   <ul>
   <% evidenceExist = false %>
@@ -98,7 +108,9 @@
     No Reviews Marked as Partially Relevant
   <% end %>
   </ul>
+  </div>
 
+<div class = "evidence-section">
   <h3> Product Attributes: </h3>
   <ul>
   <% evidenceExist = false %>
@@ -111,7 +123,9 @@
     No Product Attributes Marked as Partially Relevant
   <% end %>
   </ul>
+  </div>
 
+<div class = "evidence-section">
   <h3> Product Descriptions: </h3>
   <ul>
   <% evidenceExist = false %>
@@ -124,7 +138,9 @@
     No Product Descriptions Marked as Partially Relevant
   <% end %>
   </ul>
+  </div>
 
+<div class = "evidence-section">
   <h3> QnAs: </h3>
   <ul>
   <% evidenceExist = false %>
@@ -146,7 +162,8 @@
     No QnAs Marked as Partially Relevant
   <% end %>
   </ul>
-</p>
+  </div>
+</div>
 
 <br>
 <h3><%= f.label "Is this question answerable based on the evidence marked as relevant?"%> <h3>
