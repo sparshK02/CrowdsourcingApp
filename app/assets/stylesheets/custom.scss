@@ -204,16 +204,36 @@ input {
 }
 
 .evidence-list {
-  font-size: 20px;
+  font-size: 25px;
+}
+
+.evidence-list li {
+  background-color: #ebf2f8;
+  width: 90%;
+  border-radius: 15px;
+  padding: 2%;
+  list-style: none;
+  list-style-position: none;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 3%;
+  transition-duration: 0.2s;
+}
+
+.evidence-list li:hover {
+  background-color: #cfe7fc;
 }
 
 .checkbox-list {
   font-size: 17px;
-  background-color: $gray-medium-light;
+  background-color: white;
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: black;
   line-height: 17px;
   border-radius: 15px;
   width: 200px;
-  height: 110px;
+  height: 115px;
   margin: 15px;
 }
 

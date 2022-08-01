@@ -30,8 +30,8 @@ class AnnotationsController < ApplicationController
                     @annotation.not_sure_product_attributes.reject! {|evidence| evidence == "0"}
                     @annotation.save
                     @annotation.productAttributes.each do |evidence|
-                        if ((!(@annotation.highly_relevant_product_attributes.include? evidence)) and (!(@annotation.partially_relevant_product_attributes.include? evidence)) and (!(@annotation.irrelevant_product_attributes.include? evidence)) and (!(@annotation.not_sure_product_attributes.include? evidence)) )
-                            @annotation.irrelevant_product_attributes.append(evidence)
+                        if ((!(@annotation.highly_relevant_product_attributes.include? evidence.to_json)) and (!(@annotation.partially_relevant_product_attributes.include? evidence.to_json)) and (!(@annotation.irrelevant_product_attributes.include? evidence.to_json)) and (!(@annotation.not_sure_product_attributes.include? evidence.to_json)) )
+                            @annotation.irrelevant_product_attributes.append(evidence.to_json)
                         end
                     end
                     @annotation.save
@@ -39,6 +39,21 @@ class AnnotationsController < ApplicationController
                     format.html { redirect_to complete_task3_path(@annotation)}
                     format.json { render :show, status: :ok, location: @annotation }
                 elsif @annotation.formStage == 3
+                    @annotation.highly_relevant_descriptions.reject! {|evidence| evidence == "0"}
+                    @annotation.partially_relevant_descriptions.reject! {|evidence| evidence == "0"}
+                    @annotation.irrelevant_descriptions.reject! {|evidence| evidence == "0"}
+                    @annotation.not_sure_descriptions.reject! {|evidence| evidence == "0"}
+                    @annotation.save
+                    @annotation.productDesc.each do |evidence|
+                        if ((!(@annotation.highly_relevant_descriptions.include? evidence)) and (!(@annotation.partially_relevant_descriptions.include? evidence)) and (!(@annotation.irrelevant_descriptions.include? evidence)) and (!(@annotation.not_sure_descriptions.include? evidence)) )
+                            @annotation.irrelevant_descriptions.append(evidence)
+                        end
+                    end
+                    @annotation.save
+                    flash[:success] = "Product Descriptions Annotated."
+                    format.html { redirect_to complete_task4_path(@annotation)}
+                    format.json { render :show, status: :ok, location: @annotation }
+                elsif @annotation.formStage == 4
                     @annotation.highly_relevant_qnas.reject! {|evidence| evidence == "0"}
                     @annotation.partially_relevant_qnas.reject! {|evidence| evidence == "0"}
                     @annotation.irrelevant_qnas.reject! {|evidence| evidence == "0"}
@@ -51,10 +66,6 @@ class AnnotationsController < ApplicationController
                     end
                     @annotation.save
                     flash[:success] = "QnAs Annotated."
-                    format.html { redirect_to complete_task4_path(@annotation)}
-                    format.json { render :show, status: :ok, location: @annotation }
-                elsif @annotation.formStage == 4
-                    flash[:success] = "Answerability Annotated."
                     format.html { redirect_to complete_task5_path(@annotation)}
                     format.json { render :show, status: :ok, location: @annotation }
                 else
@@ -77,6 +88,6 @@ class AnnotationsController < ApplicationController
       end
 
     def annotation_params
-      params.require(:annotation).permit(:paraphrase, :answer, :assigned, :finished, :annotatorID, :externalSources, :answerable, :formStage, :highly_relevant_reviews => [], :highly_relevant_product_attributes => [], :highly_relevant_qnas => [], :partially_relevant_reviews => [], :partially_relevant_product_attributes => [], :partially_relevant_qnas => [], :irrelevant_reviews => [], :irrelevant_product_attributes => [], :irrelevant_qnas => [], :not_sure_reviews =>[], :not_sure_product_attributes =>[], :not_sure_qnas =>[])
+      params.require(:annotation).permit(:paraphrase, :answer, :assigned, :finished, :annotatorID, :externalSources, :answerable, :formStage, :highly_relevant_reviews => [], :highly_relevant_product_attributes => [], :highly_relevant_descriptions => [], :highly_relevant_qnas => [], :partially_relevant_reviews => [], :partially_relevant_product_attributes => [], :partially_relevant_descriptions => [], :partially_relevant_qnas => [], :irrelevant_reviews =>[], :irrelevant_product_attributes => [], :irrelevant_descriptions =>[], :irrelevant_qnas => [], :not_sure_reviews =>[], :not_sure_product_attributes =>[], :not_sure_descriptions =>[], :not_sure_qnas =>[])
     end
 end
