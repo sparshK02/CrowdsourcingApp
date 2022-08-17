@@ -79,16 +79,18 @@ class AnnotationsController < ApplicationController
                         format.html { redirect_to current_user}
                         format.json { render :show, status: :ok, location: @annotation }
                     end
+                elsif @annotation.makes_sense == nil
+                    flash[:success] = "No answer marked."
+                    format.html { redirect_to makes_sense_path(@annotation)}
+                    format.json { render :show, status: :ok, location: @annotation }
                 else
+                    @annotation.finished = true
+                    @annotation.save
                     flash[:success] = "Nothing else to annotate."
                     format.html { redirect_to current_user}
                     format.json { render :show, status: :ok, location: @annotation }
                 end
 
-            elsif @annotation.makes_sense == nil
-                flash[:success] = "No answer marked."
-                format.html { redirect_to makes_sense_path(@annotation)}
-                format.json { render :show, status: :ok, location: @annotation }
             else
                 format.html { render :edit, status: :unprocessable_entity }
                 format.json { render json: @annotation.errors, status: :unprocessable_entity }
