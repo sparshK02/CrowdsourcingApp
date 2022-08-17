@@ -1,0 +1,51 @@
+<% provide(:title, "Step 1") %>
+
+<div class = "full-page">
+
+<div class="sticky-top">
+<h1>Instructions:</h1>
+<p> Mark if this question makes sense in the context of the product. </p>
+</div>
+
+<div class="page-content">
+
+
+<%= form_with(model: @annotation)do |f| %>
+
+<div class = "info-header">
+<h3> <b>Product:</b> <%= @annotation.product%><h3>
+<h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
+<h3> <b>Question:</b> <%= @annotation.question%><h3>
+</div>
+
+<br>
+<br>
+<h3><%= f.label "Does this question make sense in the context of the product?"%> <h3>
+<div class = "makes-sense-list">
+    <%= f.label :makes_sense, "Yes, it makes sense", value: "true"%>
+    <%= f.radio_button :makes_sense, "true"%><br>
+    <%= f.label :makes_sense, "No, it does not make sense", value: "false"%>
+    <%= f.radio_button :makes_sense, "false" %>
+</div>
+<br>
+
+
+ 
+
+<br>
+
+
+<%= f.hidden_field :formStage, value: 0%>
+<%= f.hidden_field :annotatorID, value: current_user.annotatorID%>
+
+
+<div class="actions">
+    <%= f.submit "Submit", class: 'btn btn-primary'%>
+  </div>
+
+<% end %>
+
+</div>
+</div>
+
+

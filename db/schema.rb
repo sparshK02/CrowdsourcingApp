@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_01_161011) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_17_155154) do
   create_table "annotations", force: :cascade do |t|
     t.text "product"
     t.text "question"
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_161011) do
     t.text "partially_relevant_descriptions"
     t.text "irrelevant_descriptions"
     t.text "not_sure_descriptions"
+    t.boolean "makes_sense"
   end
 
   create_table "users", force: :cascade do |t|

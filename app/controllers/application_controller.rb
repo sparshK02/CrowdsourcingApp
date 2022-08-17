@@ -7,14 +7,14 @@ class ApplicationController < ActionController::Base
           if annotation.assigned == false
             annotation.assigned = 1
             annotation.save
-            redirect_to complete_task_path(annotation)
+            redirect_to makes_sense_path(annotation)
             return
           elsif (annotation.assigned == true) && (annotation.finished == false) && (Time.current - annotation.updated_at > 12*60*60)
             annotation.assigned = 0
             annotation.save
             annotation.assigned = 1
             annotation.save
-            redirect_to complete_task_path(annotation)
+            redirect_to makes_sense_path(annotation)
             return
           end
         end

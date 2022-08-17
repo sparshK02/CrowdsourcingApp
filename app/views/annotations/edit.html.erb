@@ -71,7 +71,8 @@
 
 
 <div class="actions">
-    <%= f.submit "Next Section", class: 'btn btn-primary'%>
+    <%= link_to "Go Back", makes_sense_path(@annotation), class: 'go-back'%>
+    <%= f.submit "Next Section", class: 'next-section'%>
   </div>
 
 <% end %>

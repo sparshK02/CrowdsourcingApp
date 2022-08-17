@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/login',   to: 'sessions#create'
   get '/logout',  to: 'sessions#destroy'
   
+  get '/annotations/:id/makes_sense', to: 'annotations#makes_sense', as: 'makes_sense'
   get '/annotations/:id/completeTask', to: 'annotations#edit', as: 'complete_task'
   get '/annotations/:id/completeTask2', to: 'annotations#edit2', as: 'complete_task2'
   get '/annotations/:id/completeTask3', to: 'annotations#edit3', as: 'complete_task3'
