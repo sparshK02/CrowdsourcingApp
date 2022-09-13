@@ -1,16 +1,22 @@
 <% provide(:title, "Step 1") %>
 
 <div class = "full-page">
-
+<%= form_with(model: @annotation)do |f| %>
 <div class="sticky-top">
+<div class = "instructions">
 <h1>Instructions:</h1>
 <p> Mark if this question makes sense in the context of the product. </p>
+</div>
+<div class= "notes-section">
+<%= f.label "Enter any notes/concerns here:" , style: 'font-size: 13px;'%>
+<%= f.text_field :makes_sense_note, style: 'height:40px !important;'%>
+</div>
 </div>
 
 <div class="page-content">
 
 
-<%= form_with(model: @annotation)do |f| %>
+
 
 <div class = "info-header">
 <h3> <b>Product:</b> <%= @annotation.product%><h3>

@@ -2,7 +2,10 @@
 
 <div class = "full-page">
 
+<%= form_with(model: @annotation)do |f| %>
+
 <div class="sticky-top">
+<div class= "instructions">
 <h1>Instructions: </h1>
 <p><b>Determine the level of relevancy for each product attribute</b> with regard to the question.</p>
 <p> The Key and value represent the identifier for the product attribute and its value. </p>
@@ -11,10 +14,15 @@
 <h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
 <h3> <b>Question:</b> <%= @annotation.question%><h3>
 </div>
+<div class= "notes-section">
+<%= f.label "Enter any notes/concerns here:", style: 'font-size: 13px;'%>
+<%= f.text_field :attributes_note, style: 'height:40px !important;' %>
+</div>
+</div>
 
 <div class="page-content">
 
-<%= form_with(model: @annotation)do |f| %>
+
 
 
 <div class= "header">

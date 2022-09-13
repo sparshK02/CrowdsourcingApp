@@ -2,18 +2,24 @@
 
 <div class = "full-page">
 
+<%= form_with(model: @annotation)do |f| %>
+
 <div class="sticky-top">
+<div class= "instructions">
 <h1>Instructions:</h1>
 <p>For the first part, <b>Rewrite/Paraphrase the Question in your own words</b> based on your understanding.</p>
 <p>Then, <b>determine the level of relevancy for each user review snippet</b> with regard to the question. Hover over the review to view the entire review.</p>
 <p> Here is the original question for your reference while scrolling: </p>
 <h3> <b>Question:</b> <br> <%= @annotation.question%><h3>
 </div>
+<div class= "notes-section">
+<%= f.label "Enter any notes/concerns here:", style: 'font-size: 13px;'%>
+<%= f.text_field :paraphrase_reviews_note, style: 'height:40px !important;' %>
+</div>
+</div>
 
 <div class="page-content">
 
-
-<%= form_with(model: @annotation)do |f| %>
 
 <div class = "info-header">
 <h3> <b>Product:</b> <%= @annotation.product%><h3>

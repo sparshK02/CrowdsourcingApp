@@ -1,8 +1,9 @@
 <% provide(:title, "Complete Task") %>
 
 <div class = "full-page">
-
+<%= form_with(model: @annotation)do |f| %>
 <div class="sticky-top">
+<div class= "instructions">
 <h1>Instructions: </h1>
 <p> Based on the evidence marked as either highly relevant or partially relevant, mark if this question is answerable. </p>
 <p>Come up with a coherent answer for the original question, if there is enough evidence to answer the question.</p>
@@ -11,10 +12,15 @@
 <h3> <b>Item ID:</b> <%= @annotation.itemID%><h3>
 <h3> <b>Question:</b> <%= @annotation.question%><h3>
 </div>
+<div class= "notes-section">
+<%= f.label "Enter any notes/concerns here:", style: 'font-size: 13px;'%>
+<%= f.text_field :answer_generation_note, style: 'height:40px !important;' %>
+</div>
+</div>
 
 <div class="page-content">
 
-<%= form_with(model: @annotation)do |f| %>
+
 
 <br>
 

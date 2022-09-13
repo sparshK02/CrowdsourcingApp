@@ -2,7 +2,10 @@
 
 <div class = "full-page">
 
+<%= form_with(model: @annotation)do |f| %>
+
 <div class="sticky-top">
+<div class= "instructions">
 <h1>Instructions: </h1>
 <p><b>Determine the level of relevancy for each Question and its Answers</b> with regard to the question.</p>
 <p> The question is shown along with all the answers for that question. </p>
@@ -13,9 +16,16 @@
 <h3> <b>Question:</b> <%= @annotation.question%><h3>
 </div>
 
+<div class= "notes-section">
+<%= f.label "Enter any notes/concerns here:", style: 'font-size: 13px;'%>
+<%= f.text_field :qna_note, style: 'height:40px !important;' %>
+</div>
+
+</div>
+
 <div class="page-content">
 
-<%= form_with(model: @annotation)do |f| %>
+
 
 
 <div class = "header">

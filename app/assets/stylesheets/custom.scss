@@ -171,15 +171,30 @@ input {
 }
 
 .sticky-top {
-  top: 15%;
-  bottom: 10%;
-  width: 18%;
-  position:fixed;
-  padding: 2%;
   float: left;
-  overflow-y:scroll;
-  background-color: $gray-medium-light;
-  border-radius: 15px;
+
+  .instructions {
+    top: 15%;
+    height: 50%;
+    position:fixed;
+    width: 18%;
+    padding: 2%;
+    overflow-y:scroll;
+    background-color: $gray-medium-light;
+    border-radius: 15px;
+  }
+
+  .notes-section {
+    padding: 2%;
+    bottom: 18%;
+    position:fixed;
+    width: 18%;
+
+    .notes-input {
+      min-height:10%;
+    }
+  }
+  
 }
 
 .page-content {
@@ -457,6 +472,10 @@ input {
 
 .next-section:hover {
   background-color: #3270a2;
+}
+
+.annotation-progress {
+    text-align: left;
 }
 
 .debug_dump {

@@ -7,10 +7,24 @@
          <br>
          Your Annotator ID: <%= @user.annotatorID %>
       </h1>
+      <br><br>
+      <div class = "annotation-progress">
+      <% annotations = Annotation.all%>
+        Total Annotations in this Task: <%= annotations.size%> <br>
+      <% filtAnnotations = annotations.reject {|annotation| (annotation.finished == true)} %> <%#|| (Time.current - annotation.updated_at < 1*60*60)} %>
+      
+        Annotations Completed: <%= annotations.size - filtAnnotations.size%> <br>
+        Annotations Incomplete: <%= filtAnnotations.size%>
+      </div>
       <br>
-      <p>
+      <% if filtAnnotations.size > 0 %>
+        <p>
         <%= link_to "Generate Task", find_incomplete_annotation_path , class: 'btn btn-primary' %>
       </p>
+      <% else %>
+       <p> All Annotations Annotated! </p>
+      <% end %>
+      
     </section>
   </aside>
 </div>
