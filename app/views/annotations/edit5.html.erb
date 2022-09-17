@@ -1,4 +1,6 @@
 <% provide(:title, "Complete Task") %>
+<% id = params[:annotation_id] || params[:id] %> 
+<%@annotation = Annotation.find(id)%>
 
 <div class = "full-page">
 <%= form_with(model: @annotation)do |f| %>

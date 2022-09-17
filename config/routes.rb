@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get  '/login',   to: 'sessions#new'
   post '/login',   to: 'sessions#create'
   get '/logout',  to: 'sessions#destroy'
+
+
+  #get '/annotations/:id', to: 'annotations#index', as: 'export_annotations'
   
   get '/annotations/:id/makes_sense', to: 'annotations#makes_sense', as: 'makes_sense'
   get '/annotations/:id/completeTask', to: 'annotations#edit', as: 'complete_task'

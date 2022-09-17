@@ -1,11 +1,31 @@
 class AnnotationsController < ApplicationController
-    before_action :set_annotation
+    #before_action :set_annotation
+
+    def index
+        @annotations = Annotation.where(finished: true)
+        @completed = @annotations.reject {|annotation| (annotation.finished == false)}
+        respond_to do |format|
+            format.html
+            format.csv {send_data @annotations.to_csv}
+        end
+    end
+    
+    def show
+        @annotations = Annotation.where(finished: true)
+        @completed = @annotations.reject {|annotation| (annotation.finished == false)}
+        respond_to do |format|
+            format.html
+            format.csv {send_data @annotations.to_csv, filename: "CompletedAnnotations-#{Time.now}.csv" }
+        end
+    end
 
     def edit
+        set_annotation
         print(@annotation)
     end
 
     def update
+        set_annotation
         respond_to do |format|
             if @annotation.update(annotation_params)
 
