@@ -11,19 +11,23 @@
       <div class = "annotation-progress">
       <% annotations = Annotation.all%>
         Total Annotations in this Task: <%= annotations.size%> <br>
-      <% filtAnnotations = annotations.reject {|annotation| (annotation.finished == true)} %> <%#|| (Time.current - annotation.updated_at < 1*60*60)} %>
-      
-        Annotations Completed: <%= annotations.size - filtAnnotations.size%> <br>
-        Annotations Incomplete: <%= filtAnnotations.size%>
+      <% notStarted = annotations.reject {|annotation| (annotation.assigned == true)} %>
+      <% inProgress = annotations.reject {|annotation| (annotation.finished == true) || (annotation.assigned == false)} %>
+      <% fullyComplete = annotations.reject {|annotation| (annotation.finished == false)} %>
+        Completed: <%= fullyComplete.size %> <br>
+        In Progress: <%= inProgress.size %> <br>
+        Not Assigned: <%= notStarted.size%>
       </div>
       <br>
-      <% if filtAnnotations.size > 0 %>
+      <% if fullyComplete.size != annotations.size %>
         <p>
         <%= link_to "Generate Task", find_incomplete_annotation_path , class: 'btn btn-primary' %>
       </p>
       <% else %>
-       <p> All Annotations Annotated! </p>
+       <h1> All Annotations Annotated! </h1>
       <% end %>
+    <br>
+      <%#= link_to "Export Completed Annotations", annotation_path(format: :csv) , class: 'btn btn-primary' %>
       
     </section>
   </aside>
