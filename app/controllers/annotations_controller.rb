@@ -6,7 +6,7 @@ class AnnotationsController < ApplicationController
         @completed = @annotations.reject {|annotation| (annotation.finished == false)}
         respond_to do |format|
             format.html
-            format.csv {send_data @annotations.to_csv}
+            format.csv {send_data @annotations.to_csv, filename: "CompletedAnnotations-#{Time.now}.csv"}
         end
     end
     

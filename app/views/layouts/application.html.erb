@@ -19,7 +19,7 @@
          <ul class="nav navbar-nav navbar-right">
           <!--<li><%= link_to "Instructions", instructions_path %></li>-->
            <li><%= link_to "Home", root_path %></li>
-            <li> <%= link_to "Export Completed Annotations", annotation_path(format: :csv) %> </li>
+            <%#= link_to "Export Completed Annotations", annotation_path(format: :csv) %>
            <% if logged_in? %>
            <li><%= link_to "Assigned Task", current_user %></li>
             <li><%= link_to "Log out", logout_path, method: :delete %></li>
