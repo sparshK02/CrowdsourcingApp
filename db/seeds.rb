@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-data = ActiveSupport::JSON.decode(File.read("db/diverse_data_samples_500.json"))
+data = ActiveSupport::JSON.decode(File.read("db/raw_evidence_for_annotation.json"))
 #data = data[0] # Unwrap the Array
 
 data.each do |i|
