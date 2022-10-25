@@ -39,9 +39,9 @@
         <ul>
         <li> 
         
-            <b>Key:</b> <%= productAttr.keys[0] %> 
+            <b>Key:</b> <%= productAttr[0] %> 
             <br>
-            <b>Value:</b> <%= productAttr.values[0] %>
+            <b>Value:</b> <%= productAttr[1] %>
             
             <div class = "checkbox-list">
               <%= f.check_box :highly_relevant_product_attributes, {multiple: true}, productAttr.to_json%>

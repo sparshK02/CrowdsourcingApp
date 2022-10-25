@@ -50,7 +50,7 @@
   <% @annotation.highly_relevant_product_attributes.each do |evidence|%>
         <% e = JSON.parse(evidence)%>
         <% evidenceExist = true%>
-        <li> <b> Key: </b> <%= e.keys[0] %> <br> <b> Value: </b> <%= e.values[0] %></li> <br>
+        <li> <b> Key: </b> <%= e[0] %> <br> <b> Value: </b> <%= e[1] %></li> <br>
   <% end %>
   <% unless evidenceExist %>
     No Product Attributes Marked as Highly Relevant
@@ -125,7 +125,7 @@
   <% @annotation.partially_relevant_product_attributes.each do |evidence|%>
         <% e = JSON.parse(evidence)%>
         <% evidenceExist = true%>
-        <li> <b> Key: </b> <%= e.keys[0] %> <br> <b> Value: </b> <%= e.values[0] %></li> <br>
+        <li> <b> Key: </b> <%= e[0] %> <br> <b> Value: </b> <%= e[1] %></li> <br>
   <% end %>
   <% unless evidenceExist %>
     No Product Attributes Marked as Partially Relevant
