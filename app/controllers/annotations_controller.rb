@@ -96,6 +96,12 @@ class AnnotationsController < ApplicationController
                         format.json { render :show, status: :ok, location: @annotation }
                     else
                         flash[:success] = "Task Fully Annotated."
+                        cluster = Annotation.where(clusterID: @annotation.clusterID)
+                        numComplete = @annotation.numOfClusterCompleted+1
+                        cluster.each do |a|
+                            a.numOfClusterCompleted = numComplete
+                            a.save
+                        end
                         format.html { redirect_to current_user}
                         format.json { render :show, status: :ok, location: @annotation }
                     end
@@ -106,6 +112,12 @@ class AnnotationsController < ApplicationController
                 else
                     @annotation.finished = true
                     @annotation.save
+                    cluster = Annotation.where(clusterID: @annotation.clusterID)
+                        numComplete = @annotation.numOfClusterCompleted+1
+                        cluster.each do |a|
+                            a.numOfClusterCompleted = numComplete
+                            a.save
+                        end
                     flash[:success] = "Nothing else to annotate."
                     format.html { redirect_to current_user}
                     format.json { render :show, status: :ok, location: @annotation }
@@ -126,6 +138,6 @@ class AnnotationsController < ApplicationController
       end
 
     def annotation_params
-      params.require(:annotation).permit(:paraphrase, :answer, :assigned, :finished, :annotatorID, :externalSources, :answerable, :formStage, :makes_sense,:makes_sense_note, :paraphrase_reviews_note, :attributes_note, :description_note, :qna_note, :answer_generation_note, :highly_relevant_reviews => [], :highly_relevant_product_attributes => [], :highly_relevant_descriptions => [], :highly_relevant_qnas => [], :partially_relevant_reviews => [], :partially_relevant_product_attributes => [], :partially_relevant_descriptions => [], :partially_relevant_qnas => [], :irrelevant_reviews =>[], :irrelevant_product_attributes => [], :irrelevant_descriptions =>[], :irrelevant_qnas => [], :not_sure_reviews =>[], :not_sure_product_attributes =>[], :not_sure_descriptions =>[], :not_sure_qnas =>[])
+      params.require(:annotation).permit(:paraphrase, :answer, :assigned, :finished, :annotatorID, :externalSources, :answerable, :formStage, :makes_sense,:makes_sense_note, :paraphrase_reviews_note, :attributes_note, :description_note, :qna_note, :answer_generation_note, :numOfClusterCompleted, :highly_relevant_reviews => [], :highly_relevant_product_attributes => [], :highly_relevant_descriptions => [], :highly_relevant_qnas => [], :partially_relevant_reviews => [], :partially_relevant_product_attributes => [], :partially_relevant_descriptions => [], :partially_relevant_qnas => [], :irrelevant_reviews =>[], :irrelevant_product_attributes => [], :irrelevant_descriptions =>[], :irrelevant_qnas => [], :not_sure_reviews =>[], :not_sure_product_attributes =>[], :not_sure_descriptions =>[], :not_sure_qnas =>[])
     end
 end

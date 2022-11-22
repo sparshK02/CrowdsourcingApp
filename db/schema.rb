@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_12_191344) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_25_152055) do
   create_table "annotations", force: :cascade do |t|
     t.text "product"
     t.text "question"
@@ -52,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_191344) do
     t.text "description_note"
     t.text "qna_note"
     t.text "answer_generation_note"
+    t.integer "clusterID"
+    t.integer "numOfClusterCompleted", default: 0
   end
 
   create_table "users", force: :cascade do |t|
