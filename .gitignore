@@ -8,8 +8,12 @@
 /.bundle
 
 # Ignore the default SQLite database.
-#/db/*.sqlite3
-#/db/*.sqlite3-*
+/db/*.sqlite3
+/db/*.sqlite3-*
+
+# Ignore json files 
+/db/.json
+/db/complete_beauty_1115.json
 
 # Ignore all logfiles and tempfiles.
 /log/*

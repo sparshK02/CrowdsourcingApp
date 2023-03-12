@@ -6,18 +6,19 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-data = ActiveSupport::JSON.decode(File.read("db/raw_evidence_for_annotation.json"))
+data = ActiveSupport::JSON.decode(File.read("db/data_for_annotation_0131.json"))
 #data = data[0] # Unwrap the Array
 
+clusterNum = 0
 data.each do |i|
     Annotation.create(
-        product: i["product_name"],
-        itemID: i["item_id"],
-        question: i["question"],
-        reviews: i["top_reviews"],
-        productAttributes: i["top_attributes"],
-        productDesc: i["top_descriptions"],
-        QnAs: i["top_qna"]
+    product: i["product_name"],
+    itemID: i["item_id"],
+    question: i["question"],
+    reviews: i["top_reviews"],
+    productAttributes: i["top_attributes"],
+    productDesc: i["top_descriptions"],
+    QnAs: i["top_qna"]
     )
 end
 
