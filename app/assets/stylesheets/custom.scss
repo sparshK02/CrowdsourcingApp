@@ -143,6 +143,10 @@ input {
   height: auto !important;
 }
 
+textarea {
+  min-height: 7em;
+}
+
 #error_explanation {
   color: red;
   ul {
