@@ -9,7 +9,6 @@
 data = ActiveSupport::JSON.decode(File.read("db/data_for_annotation_0131.json"))
 #data = data[0] # Unwrap the Array
 
-clusterNum = 0
 data.each do |i|
     Annotation.create(
     product: i["product_name"],
@@ -20,5 +19,6 @@ data.each do |i|
     productDesc: i["top_descriptions"],
     QnAs: i["top_qna"]
     )
+    end
 end
 

@@ -96,6 +96,12 @@ class AnnotationsController < ApplicationController
                         format.json { render :show, status: :ok, location: @annotation }
                     else
                         flash[:success] = "Task Fully Annotated."
+                        cluster = Annotation.where(clusterID: @annotation.clusterID)
+                        numComplete = @annotation.numOfClusterCompleted+1
+                        cluster.each do |a|
+                            a.numOfClusterCompleted = numComplete
+                            a.save
+                        end
                         format.html { redirect_to current_user}
                         format.json { render :show, status: :ok, location: @annotation }
                     end

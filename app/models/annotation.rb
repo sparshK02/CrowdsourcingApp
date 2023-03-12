@@ -10,7 +10,6 @@ class Annotation < ApplicationRecord
 
             all.each do |annotation|
                 csv << attributes.map {|attr| annotation.send(attr)}
-                #csv << [annotation.id, annotation.product, annotation.question, annotation.annotatorID, string, annotation.productAttributes, annotation.QnAs]
             end
         end
     end

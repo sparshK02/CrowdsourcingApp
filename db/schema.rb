@@ -52,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_01_053121) do
     t.text "description_note"
     t.text "qna_note"
     t.text "answer_generation_note"
+    t.integer "clusterID"
+    t.integer "numOfClusterCompleted", default: 0
   end
 
   create_table "users", force: :cascade do |t|
